@@ -1,0 +1,7 @@
+-------Character Movement here------------
+
+-------Character Jumping here-------------
+
+
+-------Detection for hoisting, climbing, running, ------------
+
