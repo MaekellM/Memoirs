@@ -1,3 +1,5 @@
+---------Collision check calls from CollisionDetection scripts-----------
+
 -------Character Movement here------------
 
 -------Character Jumping here-------------
