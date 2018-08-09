@@ -5,6 +5,7 @@ public class PlayerScript : MonoBehaviour {
     CharacterController CHController;
     GameObject Cholder,MainC;
     float Horz, Vert;
+    float FallSpeed;
     Vector3 targetRotation;
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,24 @@ public class PlayerScript : MonoBehaviour {
         if(targetRotation.magnitude > 0){
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation), 0.5f);//Rotates player based on calculated rotation.
         }
-        CHController.Move(Cholder.transform.TransformDirection(new Vector3(Horz, 0, Vert)) * 0.1f);//moves the player based on where the camera is facing.
+        
+        if (CheckIfGrounded())
+        {
+            FallSpeed = 0;//Vertical speed
+            if (Input.GetKeyDown(KeyCode.Space)) {//sets vertical speed when space is pressed
+                FallSpeed = 3;
+            }
+        }
+        else { 
+            FallSpeed -= 0.2f;//decreases vertical speed while in air
+        }
+
+        CHController.Move(Cholder.transform.TransformDirection(new Vector3(Horz, FallSpeed, Vert)) * 0.1f);//moves the player based on where the camera is facing.
 	}
+
+    bool CheckIfGrounded()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);//draws a ray from the feet
+        return Physics.Raycast(ray, 0.1f);//returns if ray collides
+    }
 }
