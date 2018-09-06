@@ -1,0 +1,12 @@
+Builds
+Library
+*.csproj
+*.sln
+Temp
+*.userprefs
+.vs/
+obj/
+Assets/AssetBundles/
+Assets/AssetBundles.meta
+Assets/SaveFile/
+Assets/SaveFile.meta
