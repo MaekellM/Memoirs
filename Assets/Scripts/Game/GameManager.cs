@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
         INIT,
         INGAME,
         PAUSED,
-        GAMEOVER
+        GAMEOVER,
+        CUTSCENE
     }
 
     public GAMESTATES gameState = GAMESTATES.INIT;
@@ -140,7 +141,13 @@ public class GameManager : MonoBehaviour
                     callOnce = false;
                 }
                 break;
+            case GAMESTATES.CUTSCENE:
+                if(callOnce)
+                {
 
+                    callOnce = false;
+                }
+                break;
         }
     }
     public void ChangeGameState(int state)  //for button click event (just in case)
@@ -172,6 +179,7 @@ public class GameManager : MonoBehaviour
     void Game()
     {
         // put updates here for when in in-game state
+        Player.instance.input.SetInput();
     }
 
     void SETPATH()
